@@ -1,0 +1,11 @@
+<div class="card" style="width: 14rem">
+    <img [src]="product?.image" style="display:flex;" class="card-img-top img-fluid card-img-top img-thumbnail rounded mx-auto d-block" alt="No image" />
+    <div class="card-body">
+      <h5 class="card-title">{{ product?.title | slice : 0 : 10 }}</h5>
+      <p class="card-text">{{ product?.description | slice : 0 : 40 }}</p>
+      <h3 class="card-text">{{ product?.price| currency:'USD':true}}</h3>
+      <button class="btn btn-primary">
+        Add to Cart
+      </button>
+    </div>
+  </div>

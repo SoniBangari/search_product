@@ -1,0 +1,68 @@
+<!-- <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <form class="d-flex" (ngSubmit)="onSubmit()" style="display: flex; padding-left: 30%; padding-top: 2%;">
+        <input class="form-control me-2" [(ngModel)]="searchQuery" name="search" type="search" placeholder="Search" aria-label="Search" style="width:300px; padding-right: 100px;">
+        <button class="btn btn-outline-success ms-2" type="submit" style="display: flex; align-content: center; padding-left: 2%;">Search</button>
+      </form>
+    </div>
+  </nav>
+<div class="container mt-5" *ngIf="selectedProduct">
+    <div class="row">
+      <div class="col-lg-12" style="padding-left: 7%;">
+        <h1 style="display: flex; text-align:center; align-items: center; padding-left: 40%;
+        padding-bottom: 3%; padding-top: 3%;">Products</h1>
+        <div class="row">
+          <div *ngFor="let product of filteredProducts()" class="col-lg-4">
+            <app-card [product]="product" (addProduct)="addToCart($event)"></app-card>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div> -->
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex" (ngSubmit)="onSubmit()" style="display: flex; padding-left: 30%; padding-top: 2%;">
+      <input class="form-control me-2" [(ngModel)]="searchQuery" name="search" type="search" placeholder="Search"
+        aria-label="Search" style="width: 300px;">
+      <button class="btn btn-outline-success ms-2" type="submit"
+        style="display: flex; align-content: center; padding-left: 2%;">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container mt-5" *ngIf="selectedProduct">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card text-white bg-secondary mb-3">
+        <img [src]="selectedProduct?.image" alt="Product Image" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{selectedProduct?.title}}</h5>
+          <p class="card-text">{{selectedProduct?.description}}</p>
+          <p class="card-text">{{selectedProduct?.price | currency:'USD':true}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5" *ngIf="!selectedProduct">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 style="display: flex; padding-left: 35%; padding-bottom: 2%;">Products</h1>
+      <!-- <h1>No Product Found</h1> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <ng-container *ngIf="filteredProducts().length === 0; else productsList">
+        <h3>No Products Found</h3>
+    </ng-container>
+    <ng-template #productsList>
+        <div class="col-md-4 mt-4" *ngFor="let product of filteredProducts()">
+          <app-card [product]="product"></app-card>
+        </div>
+    </ng-template>
+  </div>
+</div>  
